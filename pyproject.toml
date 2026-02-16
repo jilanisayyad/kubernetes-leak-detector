@@ -1,0 +1,25 @@
+[project]
+name = "kube-leak-detector"
+version = "0.1.0"
+description = "Kubernetes resource hygiene scanner"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Your Name" }]
+dependencies = [
+  "kubernetes",
+  "requests",
+]
+
+[project.scripts]
+kube-leak-detector = "leak_detector.cli:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

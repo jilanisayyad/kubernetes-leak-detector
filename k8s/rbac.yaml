@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kube-leak-detector
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kube-leak-detector
+rules:
+- apiGroups: [ "" ]
+  resources: [ "pods" ]
+  verbs: [ "get", "list", "watch" ]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kube-leak-detector
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kube-leak-detector
+subjects:
+- kind: ServiceAccount
+  name: kube-leak-detector
+  namespace: default
